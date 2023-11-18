@@ -13,10 +13,10 @@ Welcome to the sentence-builder-frontend repository! This repository houses the 
 - External configuration management for a scalable and maintainable codebase.
 
 **Repository Structure:**
-src/: Contains the source code for the Angular application.
-config/: External configuration files to manage hardcoded values.
-docs/: Documentation and guides for developers and contributors.
-tests/: Unit tests for ensuring code quality and reliability.
+- src/: Contains the source code for the Angular application.
+- config/: External configuration files to manage hardcoded values.
+- docs/: Documentation and guides for developers and contributors.
+- tests/: Unit tests for ensuring code quality and reliability.
 
 **Development and Deployment:**
 - Utilizes containerization for consistent development and deployment environments.
