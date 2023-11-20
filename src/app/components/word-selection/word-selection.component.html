@@ -1,1 +1,19 @@
-<p>word-selection works!</p>
+<div>
+    <label for="wordType">Select Word Type:</label>
+    <select
+        id="wordType"
+        [(ngModel)]="selectedWordType"
+        (change)="onWordTypeSelect()"
+    >
+        <option *ngFor="let type of wordTypes" [value]="type">
+            {{ type }}
+        </option>
+    </select>
+</div>
+
+<div *ngIf="wordList.length > 0">
+    <label for="wordList">Select a Word:</label>
+    <select id="wordList" (change)="onWordSelect()">
+        <option *ngFor="let word of wordList" [value]="word">{{ word }}</option>
+    </select>
+</div>
