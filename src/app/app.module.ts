@@ -13,13 +13,15 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
+import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
 
 @NgModule({
     declarations: [
         AppComponent,
         WordSelectionComponent,
         SentenceDisplayComponent,
+        SentenceBuilderComponent,
     ],
     imports: [
         BrowserModule,

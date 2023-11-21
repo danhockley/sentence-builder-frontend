@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { SentenceDisplayComponent } from './components/sentence-display/sentence-display.component'
+import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
 
 const routes: Routes = [
-    { path: 'sentence-builder', component: SentenceDisplayComponent },
+    { path: 'sentence-builder', component: SentenceBuilderComponent },
     { path: '', redirectTo: '/sentence-builder', pathMatch: 'full' },
 ]
 

@@ -1,19 +1,33 @@
-<div>
-    <label for="wordType">Select Word Type:</label>
-    <select
-        id="wordType"
-        [(ngModel)]="selectedWordType"
-        (change)="onWordTypeSelect()"
-    >
-        <option *ngFor="let type of wordTypes" [value]="type">
-            {{ type }}
-        </option>
-    </select>
-</div>
+<!-- Update the template with a form tag -->
+<form #wordTypeForm="ngForm">
+    <div>
+        <label for="wordType">Select Word Type:</label>
+        <select
+            id="wordType"
+            name="wordType"
+            [(ngModel)]="selectedWordType"
+            (change)="onWordTypeSelect()"
+            required
+        >
+            <option *ngFor="let type of wordTypes" [value]="type">
+                {{ type }}
+            </option>
+        </select>
+    </div>
 
-<div *ngIf="wordList.length > 0">
-    <label for="wordList">Select a Word:</label>
-    <select id="wordList" (change)="onWordSelect()">
-        <option *ngFor="let word of wordList" [value]="word">{{ word }}</option>
-    </select>
-</div>
+    <div *ngIf="wordList.length > 0">
+        <label for="wordList">Select a Word:</label>
+        <select
+            id="wordList"
+            name="wordList"
+            (change)="onWordSelect($event.target.value)"
+        >
+            <option *ngFor="let word of wordList" [value]="word">
+                {{ word }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Add a submit button if needed -->
+    <button type="submit">Submit</button>
+</form>
