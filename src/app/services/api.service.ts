@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'
     providedIn: 'root',
 })
 export class ApiService {
-    private apiUrl = 'https://api-gateway-url' // TODO: Replace with actual API Gateway URL
+    private apiUrl = 'https://tasty-gold-gecko.cyclic.app'
 
     constructor(private http: HttpClient) {}
 
