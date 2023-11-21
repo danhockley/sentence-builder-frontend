@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../../services/api.service'
-import { NgForm } from '@angular/forms'
 
 @Component({
     selector: 'app-word-selection',
@@ -28,20 +27,15 @@ export class WordSelectionComponent implements OnInit {
 
     onWordTypeSelect(): void {
         // Fetch words based on the selected type
-        this.apiService.getWordsByType(this.selectedWordType).subscribe(
-            words => {
-                console.log('Received words:', words)
+        this.apiService
+            .getWordsByType(this.selectedWordType)
+            .subscribe(words => {
                 this.wordList = words
-            },
-            error => {
-                console.error('Error fetching words:', error)
-            },
-        )
+            })
     }
 
-    onWordSelect(selectedWord: string): void {
+    onWordSelect(): void {
         // Logic to add the selected word to the sentence
-        const newSentence = `${this.selectedWordType} ${selectedWord}`
-        // Now, you can use this newSentence as needed in your application
+        // You can implement this based on your application's requirements
     }
 }
