@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { ApiService } from '../../services/api.service'
 
 @Component({
@@ -10,14 +10,10 @@ export class SentenceDisplayComponent implements OnInit {
     @Input() constructedSentence: string = ''
     submittedSentences: any[] = []
 
-    @Output() onSentenceSubmit = new EventEmitter<void>()
-
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
-        this.apiService.getAllSentences().subscribe(sentences => {
-            this.submittedSentences = sentences
-        })
+        this.refreshSentences()
     }
 
     submitSentence(): void {
@@ -31,5 +27,14 @@ export class SentenceDisplayComponent implements OnInit {
                     })
                 })
         }
+    }
+
+    private refreshSentences(): void {
+        this.apiService.getAllSentences().subscribe(sentences => {
+            this.submittedSentences = sentences
+            console.log(sentences)
+            console.log(sentences[0]['words'][0])
+        })
+        console.log(this.submittedSentences)
     }
 }

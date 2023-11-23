@@ -13,11 +13,11 @@
 </div>
 
 <!-- Display previously submitted sentences -->
-<div class="submitted-sentences">
-    <h3>Previously Submitted Sentences:</h3>
+<div *ngIf="submittedSentences.length > 0">
+    <h2>Previously submitted sentences:</h2>
     <ul>
-        <li *ngFor="let submittedSentence of submittedSentences">
-            {{ submittedSentence.content }}
+        <li *ngFor="let sentence of submittedSentences">
+            {{ sentence.words }}
         </li>
     </ul>
 </div>
