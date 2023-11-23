@@ -2,9 +2,6 @@
 
 /* Styling for the container */
 div {
-    display: flex; /* Use flexbox for vertical alignment */
-    flex-direction: column; /* Align children vertically */
-    align-items: center; /* Center children horizontally */
     max-width: 800px;
     margin: 0 auto;
 }
@@ -13,7 +10,7 @@ div {
 h2 {
     font-size: 2em;
     margin-bottom: 20px;
-    text-align: center; /* Center text within the container */
+    text-align: center; /* Align the title to the left */
 }
 
 /* Responsive styles for smaller screens (e.g., mobile devices) */

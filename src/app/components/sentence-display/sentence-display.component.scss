@@ -1,10 +1,8 @@
-/* sentence-display.component.scss */
-
 /* Styling for the container */
 div {
-    display: flex; /* Use flexbox for vertical alignment */
-    flex-direction: column; /* Align children vertically */
-    align-items: center; /* Center children horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -12,7 +10,7 @@ div {
 /* Styling for the constructed sentence */
 .constructed-sentence {
     margin-bottom: 20px;
-    text-align: center; /* Center text within the container */
+    text-align: center;
 }
 
 .constructed-sentence h3 {
@@ -43,7 +41,7 @@ div {
 /* Styling for the previously submitted sentences */
 .submitted-sentences {
     margin-top: 30px;
-    text-align: center; /* Center text within the container */
+    text-align: left;
 }
 
 .submitted-sentences h3 {

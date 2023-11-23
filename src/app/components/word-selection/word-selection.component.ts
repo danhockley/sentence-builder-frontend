@@ -44,7 +44,7 @@ export class WordSelectionComponent implements OnInit {
         this.selectedWord = ''
     }
 
-    onWordSelect(): void {
+    addToSentence(): void {
         // Check if the selected word and type are not empty
         if (this.selectedWordType && this.selectedWord) {
             // Emit the selected word to the parent component

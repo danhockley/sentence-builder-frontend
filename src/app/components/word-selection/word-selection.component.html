@@ -16,17 +16,13 @@
 
     <div *ngIf="wordList.length > 0 && selectedWordType">
         <label for="wordList">Select a Word:</label>
-        <select
-            id="wordList"
-            name="wordList"
-            [(ngModel)]="selectedWord"
-            (change)="onWordSelect()"
-        >
+        <select id="wordList" name="wordList" [(ngModel)]="selectedWord">
             <option *ngFor="let word of wordList" [value]="word">
                 {{ word }}
             </option>
         </select>
-    </div>
 
-    <!-- <button type="button" (click)="onWordSelect()">Add to Sentence</button> -->
+        <!-- Add a button to add the selected word to the sentence -->
+        <button type="button" (click)="addToSentence()">Add to Sentence</button>
+    </div>
 </form>
