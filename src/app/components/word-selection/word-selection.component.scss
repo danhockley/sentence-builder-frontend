@@ -45,3 +45,10 @@ button:hover {
     color: #f44336;
     margin-top: 5px;
 }
+
+/* Responsive styles for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 600px) {
+    form {
+        max-width: 100%;
+    }
+}

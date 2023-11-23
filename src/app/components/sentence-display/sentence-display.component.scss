@@ -54,3 +54,10 @@ div {
     font-size: 1.2em;
     margin-bottom: 10px;
 }
+
+/* Responsive styles for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 600px) {
+    div {
+        max-width: 100%;
+    }
+}
