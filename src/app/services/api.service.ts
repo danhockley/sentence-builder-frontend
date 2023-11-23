@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import { Observable, catchError, tap } from 'rxjs'
 
 @Injectable({
     providedIn: 'root',
@@ -12,6 +12,16 @@ export class ApiService {
 
     getWordsByType(wordType: string): Observable<string[]> {
         return this.http.get<string[]>(`${this.apiUrl}/words/${wordType}`)
+    }
+
+    getWordTypes(): Observable<string[]> {
+        return this.http.get<string[]>(`${this.apiUrl}/words/types`).pipe(
+            tap(types => console.log('Received Word Types:', types)),
+            catchError(error => {
+                console.error('Error fetching word types:', error)
+                return []
+            }),
+        )
     }
 
     submitSentence(sentence: string): Observable<any> {

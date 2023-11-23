@@ -9,24 +9,23 @@ import { ApiService } from '../../services/api.service'
 export class WordSelectionComponent implements OnInit {
     @Output() wordSelected = new EventEmitter<string>()
 
-    wordTypes: string[] = [
-        'Noun',
-        'Verb',
-        'Adjective',
-        'Adverb',
-        'Pronoun',
-        'Preposition',
-        'Conjunction',
-        'Determiner',
-        'Exclamation',
-    ]
+    wordTypes: string[] = []
     selectedWordType: string = ''
     wordList: string[] = []
     selectedWord: string = ''
 
     constructor(private apiService: ApiService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.apiService.getWordTypes().subscribe(
+            types => {
+                this.wordTypes = types
+            },
+            error => {
+                console.error('Error fetching word types:', error)
+            },
+        )
+    }
 
     onWordTypeSelect(): void {
         this.apiService.getWordsByType(this.selectedWordType).subscribe(
