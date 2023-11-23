@@ -21,4 +21,12 @@ export class ApiService {
     getAllSentences(): Observable<any[]> {
         return this.http.get<any[]>(`${this.apiUrl}/sentences`)
     }
+
+    updateSentence(id: string, sentence: string[]): Observable<any> {
+        return this.http.put(`${this.apiUrl}/sentences/${id}`, { sentence })
+    }
+
+    deleteSentence(id: string): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/sentences/${id}`)
+    }
 }
