@@ -37,4 +37,16 @@ export class SentenceDisplayComponent implements OnInit {
         })
         console.log(this.submittedSentences)
     }
+
+    // Function to edit a sentence
+    editSentence(sentence: any): void {
+        // Implement your edit logic here
+        console.log('Editing sentence:', sentence)
+    }
+
+    // Function to delete a sentence
+    deleteSentence(sentence: any): void {
+        // Implement your delete logic here
+        console.log('Deleting sentence:', sentence)
+    }
 }

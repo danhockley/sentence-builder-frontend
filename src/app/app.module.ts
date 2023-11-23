@@ -8,13 +8,16 @@ import { AppComponent } from './app.component'
 import { WordSelectionComponent } from './components/word-selection/word-selection.component'
 import { SentenceDisplayComponent } from './components/sentence-display/sentence-display.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
 
+import { MatTableModule } from '@angular/material/table'
+import { MatIconModule } from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card';
-import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
+import { MatCardModule } from '@angular/material/card'
+import { SentencesTableComponent } from './components/sentences-table/sentences-table.component'
 
 @NgModule({
     declarations: [
@@ -22,6 +25,7 @@ import { SentenceBuilderComponent } from './components/sentence-builder/sentence
         WordSelectionComponent,
         SentenceDisplayComponent,
         SentenceBuilderComponent,
+        SentencesTableComponent,
     ],
     imports: [
         BrowserModule,
@@ -34,6 +38,8 @@ import { SentenceBuilderComponent } from './components/sentence-builder/sentence
         MatInputModule,
         MatButtonModule,
         MatCardModule,
+        MatTableModule,
+        MatIconModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

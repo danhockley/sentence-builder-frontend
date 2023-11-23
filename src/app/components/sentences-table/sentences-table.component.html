@@ -1,0 +1,25 @@
+<!-- sentences-table.component.html -->
+
+<table mat-table [dataSource]="submittedSentences" class="mat-elevation-z8">
+    <!-- Word Column -->
+    <ng-container matColumnDef="words">
+        <th mat-header-cell *matHeaderCellDef>Words</th>
+        <td mat-cell *matCellDef="let sentence">{{ sentence.words }}</td>
+    </ng-container>
+
+    <!-- Edit/Delete Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let sentence">
+            <button mat-icon-button (click)="editSentence(sentence)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteSentence(sentence)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['words', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['words', 'actions']"></tr>
+</table>

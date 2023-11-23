@@ -1,3 +1,5 @@
+<!-- sentence-display.component.html -->
+
 <div
     class="constructed-sentence"
     *ngIf="constructedSentence"
@@ -15,9 +17,9 @@
 <!-- Display previously submitted sentences -->
 <div *ngIf="submittedSentences.length > 0" class="submittedSentences">
     <h2>Previously submitted sentences:</h2>
-    <ul>
-        <li *ngFor="let sentence of submittedSentences">
-            {{ sentence.words }}
-        </li>
-    </ul>
+    <app-sentences-table
+        [submittedSentences]="submittedSentences"
+        (sentenceUpdated)="refreshSentences()"
+        (sentenceDeleted)="refreshSentences()"
+    ></app-sentences-table>
 </div>
