@@ -29,13 +29,10 @@ export class SentenceDisplayComponent implements OnInit {
         }
     }
 
-    private refreshSentences(): void {
+    refreshSentences() {
         this.apiService.getAllSentences().subscribe(sentences => {
             this.submittedSentences = sentences
-            console.log(sentences)
-            console.log(sentences[0]['words'][0])
         })
-        console.log(this.submittedSentences)
     }
 
     // Function to edit a sentence
