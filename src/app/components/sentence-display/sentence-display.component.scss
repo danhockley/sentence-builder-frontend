@@ -9,18 +9,15 @@ div {
 
 /* Styling for the constructed sentence */
 .constructed-sentence {
-    margin-bottom: 20px;
     text-align: center;
 }
 
 .constructed-sentence h3 {
     font-size: 1.5em;
-    margin-bottom: 10px;
 }
 
 .constructed-sentence p {
     font-size: 1.2em;
-    margin-bottom: 15px;
 }
 
 /* Styling for the submit button */
@@ -42,21 +39,6 @@ div {
 .submitted-sentences {
     margin-top: 30px;
     text-align: left;
-}
-
-.submitted-sentences h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.submitted-sentences ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.submitted-sentences li {
-    font-size: 1.2em;
-    margin-bottom: 10px;
 }
 
 /* Responsive styles for smaller screens (e.g., mobile devices) */

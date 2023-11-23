@@ -1,5 +1,3 @@
-<!-- sentence-display.component.html -->
-
 <div
     class="constructed-sentence"
     *ngIf="constructedSentence"
@@ -15,8 +13,8 @@
 </div>
 
 <!-- Display previously submitted sentences -->
-<div *ngIf="submittedSentences.length > 0" class="submittedSentences">
-    <h2>Previously submitted sentences:</h2>
+<div *ngIf="submittedSentences.length > 0" class="submitted-sentences">
+    <!-- <h3>Previously submitted sentences:</h3> -->
     <app-sentences-table
         [submittedSentences]="submittedSentences"
         (sentenceUpdated)="refreshSentences()"
