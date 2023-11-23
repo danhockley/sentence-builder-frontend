@@ -1,0 +1,10 @@
+<div>
+    <h2>Dan's Sentence Builder</h2>
+    <app-word-selection
+        (wordSelected)="onWordSelected($event)"
+    ></app-word-selection>
+    <app-sentence-display
+        [constructedSentence]="constructedSentence"
+        (onSentenceSubmit)="onSentenceSubmit()"
+    ></app-sentence-display>
+</div>

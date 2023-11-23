@@ -1,0 +1,21 @@
+/* sentence-builder.component.scss */
+
+/* Styling for the container */
+div {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styling for the title */
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center; /* Align the title to the left */
+}
+
+/* Responsive styles for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 600px) {
+    div {
+        max-width: 100%;
+    }
+}

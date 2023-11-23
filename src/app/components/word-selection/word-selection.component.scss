@@ -1,0 +1,58 @@
+/* word-selection.component.scss */
+
+/* Styling for the form container */
+form {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Styling for the label and select elements */
+div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.select-container {
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+/* Styling for the button */
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the error message */
+.error-message {
+    color: #f44336;
+    margin-top: 5px;
+}
+
+/* Responsive styles for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 600px) {
+    form {
+        max-width: 200px;
+    }
+}

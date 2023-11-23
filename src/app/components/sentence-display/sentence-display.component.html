@@ -1,1 +1,25 @@
-<p>sentence-display works!</p>
+<!-- sentence-display.component.html -->
+
+<div
+    class="constructed-sentence"
+    *ngIf="constructedSentence"
+    class="mat-body-1"
+>
+    <h3>Your Sentence:</h3>
+    <p>{{ constructedSentence }}</p>
+
+    <!-- Submit button -->
+    <button type="button" class="submit-button" (click)="submitSentence()">
+        Submit Sentence
+    </button>
+</div>
+
+<!-- Display previously submitted sentences -->
+<div *ngIf="submittedSentences.length > 0" class="submittedSentences">
+    <h2>Previously submitted sentences:</h2>
+    <app-sentences-table
+        [submittedSentences]="submittedSentences"
+        (sentenceUpdated)="refreshSentences()"
+        (sentenceDeleted)="refreshSentences()"
+    ></app-sentences-table>
+</div>

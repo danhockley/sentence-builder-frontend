@@ -1,0 +1,67 @@
+/* Styling for the container */
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styling for the constructed sentence */
+.constructed-sentence {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.constructed-sentence h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.constructed-sentence p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* Styling for the submit button */
+.submit-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the previously submitted sentences */
+.submitted-sentences {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.submitted-sentences h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.submitted-sentences ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.submitted-sentences li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Responsive styles for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 600px) {
+    div {
+        max-width: 100%;
+    }
+}
