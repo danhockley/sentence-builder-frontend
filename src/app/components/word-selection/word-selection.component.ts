@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { ApiService } from '../../services/api.service'
-import { NgForm } from '@angular/forms'
 
 @Component({
     selector: 'app-word-selection',
@@ -8,6 +7,8 @@ import { NgForm } from '@angular/forms'
     styleUrls: ['./word-selection.component.scss'],
 })
 export class WordSelectionComponent implements OnInit {
+    @Output() wordSelected = new EventEmitter<string>()
+
     wordTypes: string[] = [
         'Noun',
         'Verb',
@@ -21,16 +22,15 @@ export class WordSelectionComponent implements OnInit {
     ]
     selectedWordType: string = ''
     wordList: string[] = []
+    selectedWord: string = ''
 
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {}
 
     onWordTypeSelect(): void {
-        // Fetch words based on the selected type
         this.apiService.getWordsByType(this.selectedWordType).subscribe(
             words => {
-                console.log('Received words:', words)
                 this.wordList = words
             },
             error => {
@@ -39,9 +39,20 @@ export class WordSelectionComponent implements OnInit {
         )
     }
 
-    onWordSelect(selectedWord: string): void {
-        // Logic to add the selected word to the sentence
-        const newSentence = `${this.selectedWordType} ${selectedWord}`
-        // Now, you can use this newSentence as needed in your application
+    onWordTypeChange(): void {
+        // Reset selectedWord when word type changes
+        this.selectedWord = ''
+    }
+
+    onWordSelect(): void {
+        // Check if the selected word and type are not empty
+        if (this.selectedWordType && this.selectedWord) {
+            // Emit the selected word to the parent component
+            this.wordSelected.emit(`${this.selectedWord}`)
+
+            // Optionally, you can clear the selectedWordType and selectedWord for the next selection
+            this.selectedWordType = ''
+            this.selectedWord = ''
+        }
     }
 }
