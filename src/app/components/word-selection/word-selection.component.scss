@@ -1,23 +1,47 @@
-/* Adjust the styles for the title "Select Word Type:" */
-.mat-form-field.title {
-    border: none; /* Remove the border */
-    width: auto; /* Set width to auto */
-    margin-right: 10px; /* Adjust spacing as needed */
+/* word-selection.component.scss */
+
+/* Styling for the form container */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-/* Adjust the styles for the dropdown */
-.mat-form-field.dropdown {
-    border: 1px solid #ccc; /* Add border to the dropdown */
-    width: 200px; /* Set your desired width */
-    margin-right: 10px; /* Adjust spacing as needed */
+/* Styling for the label and select elements */
+div {
+    margin-bottom: 15px;
 }
 
-/* Adjust the styles for the selected word dropdown */
-.mat-select {
-    width: 100%; /* Make it take up the full width of its container */
+label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-/* Adjust the styles for the "Add to Sentence" button */
-button[mat-raised-button] {
-    margin-top: 10px; /* Add spacing between the dropdown and the button */
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-transform: capitalize; /* Capitalize the first letter of each word */
+}
+
+/* Styling for the button */
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the error message */
+.error-message {
+    color: #f44336;
+    margin-top: 5px;
 }

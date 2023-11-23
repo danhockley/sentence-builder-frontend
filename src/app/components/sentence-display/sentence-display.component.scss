@@ -1,23 +1,56 @@
-/* Adjust the styles for the title "Select Word Type:" */
-.mat-form-field.title {
-    border: none; /* Remove the border */
-    width: auto; /* Set width to auto */
-    margin-right: 10px; /* Adjust spacing as needed */
+/* sentence-display.component.scss */
+
+/* Styling for the container */
+div {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Adjust the styles for the dropdown */
-.mat-form-field.dropdown {
-    border: 1px solid #ccc; /* Add border to the dropdown */
-    width: 200px; /* Set your desired width */
-    margin-right: 10px; /* Adjust spacing as needed */
+/* Styling for the constructed sentence */
+.constructed-sentence {
+    margin-bottom: 20px;
 }
 
-/* Adjust the styles for the selected word dropdown */
-.mat-select {
-    width: 100%; /* Make it take up the full width of its container */
+.constructed-sentence h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
-/* Adjust the styles for the "Add to Sentence" button */
-button[mat-raised-button] {
-    margin-top: 10px; /* Add spacing between the dropdown and the button */
+.constructed-sentence p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* Styling for the submit button */
+.submit-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the previously submitted sentences */
+.submitted-sentences {
+    margin-top: 30px;
+}
+
+.submitted-sentences h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.submitted-sentences ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.submitted-sentences li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }

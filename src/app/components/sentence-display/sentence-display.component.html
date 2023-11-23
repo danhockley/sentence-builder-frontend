@@ -1,67 +1,23 @@
-<div>
-    <h2>Sentence Display</h2>
+<div
+    class="constructed-sentence"
+    *ngIf="constructedSentence"
+    class="mat-body-1"
+>
+    <h3>Your Sentence:</h3>
+    <p>{{ constructedSentence }}</p>
 
-    <!-- Form for submitting a new sentence -->
-    <form (ngSubmit)="onSentenceSubmit()" #sentenceForm="ngForm">
-        <!-- Separate mat-form-field for the title -->
-        <div class="mat-form-field title">
-            <mat-label>Select Word Type:</mat-label>
-        </div>
+    <!-- Submit button -->
+    <button type="button" class="submit-button" (click)="submitSentence()">
+        Submit Sentence
+    </button>
+</div>
 
-        <!-- Separate mat-form-field for the dropdown -->
-        <div class="mat-form-field dropdown">
-            <mat-select
-                id="wordType"
-                [(ngModel)]="selectedWordType"
-                (change)="onWordTypeSelect()"
-                required
-            >
-                <mat-option *ngFor="let type of wordTypes" [value]="type">{{
-                    type
-                }}</mat-option>
-            </mat-select>
-        </div>
-
-        <div *ngIf="wordList.length > 0" class="mat-form-field">
-            <mat-label>Select a Word:</mat-label>
-            <mat-select id="selectedWord" [(ngModel)]="selectedWord" required>
-                <mat-option *ngFor="let word of wordList" [value]="word">{{
-                    word
-                }}</mat-option>
-            </mat-select>
-            <button
-                type="button"
-                mat-raised-button
-                color="primary"
-                (click)="onWordSelect()"
-            >
-                Add to Sentence
-            </button>
-        </div>
-
-        <button
-            type="submit"
-            mat-raised-button
-            color="primary"
-            [disabled]="!sentenceForm.valid || constructedSentence === ''"
-        >
-            Submit Sentence
-        </button>
-    </form>
-
-    <!-- Display the constructed sentence -->
-    <div *ngIf="constructedSentence" class="mat-body-1">
-        <h3>Your Sentence:</h3>
-        <p>{{ constructedSentence }}</p>
-    </div>
-
-    <!-- Display previously submitted sentences -->
-    <div>
-        <h3>Previously Submitted Sentences:</h3>
-        <ul>
-            <li *ngFor="let submittedSentence of submittedSentences">
-                {{ submittedSentence.content }}
-            </li>
-        </ul>
-    </div>
+<!-- Display previously submitted sentences -->
+<div class="submitted-sentences">
+    <h3>Previously Submitted Sentences:</h3>
+    <ul>
+        <li *ngFor="let submittedSentence of submittedSentences">
+            {{ submittedSentence.content }}
+        </li>
+    </ul>
 </div>
