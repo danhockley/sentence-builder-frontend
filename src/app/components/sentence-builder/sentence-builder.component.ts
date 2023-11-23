@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { ApiService } from '../../services/api.service'
 
 @Component({
     selector: 'app-sentence-builder',
@@ -6,17 +7,22 @@ import { Component } from '@angular/core'
     styleUrls: ['./sentence-builder.component.scss'],
 })
 export class SentenceBuilderComponent {
-    // Define methods and properties that will be used in the template
     constructedSentence: string = ''
 
+    constructor(private apiService: ApiService) {}
+
     onWordSelected(selectedWord: string): void {
-        console.log('Word selected:', selectedWord)
         this.constructedSentence += selectedWord + ' '
-        console.log('Constructed Sentence:', this.constructedSentence)
     }
 
     onSentenceSubmit(): void {
-        console.log('Sentence submitted:', this.constructedSentence)
-        // Implement logic to send the sentence to the API or perform other actions
+        if (this.constructedSentence.trim() !== '') {
+            this.apiService
+                .submitSentence(this.constructedSentence.trim())
+                .subscribe(() => {
+                    // Optionally, perform any additional actions after submitting the sentence
+                    this.constructedSentence = '' // Clear the constructed sentence
+                })
+        }
     }
 }
