@@ -1,8 +1,17 @@
-FROM node:latest as builder
+# Use the specified Node.js version
+FROM node:18.14 as angular
+
 WORKDIR /app
+
 COPY . .
+
 RUN npm install
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=builder /app/dist/sentence-builder-frontend /usr/share/nginx/html
+# Use the specified httpd version
+FROM httpd:alpine3.15
+
+WORKDIR /usr/local/apache2/htdocs/
+
+# Copy the built Angular app from the previous stage
+COPY --from=angular /app/dist/sentence-builder-frontend/ .
