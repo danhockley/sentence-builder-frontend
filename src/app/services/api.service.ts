@@ -15,7 +15,7 @@ export class ApiService {
     }
 
     submitSentence(sentence: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/sentences`, { content: sentence })
+        return this.http.post(`${this.apiUrl}/sentences`, { sentence })
     }
 
     getAllSentences(): Observable<any[]> {
