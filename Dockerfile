@@ -1,10 +1,11 @@
 # Use the specified Node.js version
-FROM node:18.14 as angular
+FROM node:16.20 as angular
 
 WORKDIR /app
 
 COPY . .
 
+RUN npm cache clean --force
 RUN npm install
 RUN npm run build
 
