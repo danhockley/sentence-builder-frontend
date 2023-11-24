@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router'
 import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
 
 const routes: Routes = [
-    { path: 'sentence-builder', component: SentenceBuilderComponent },
-    { path: '', redirectTo: '/sentence-builder', pathMatch: 'full' },
+    { path: '', component: SentenceBuilderComponent },
+    // { path: '', redirectTo: '/sentence-builder', pathMatch: 'full' },
 ]
 
 @NgModule({
