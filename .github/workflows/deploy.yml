@@ -1,1 +1,32 @@
-# name: Docker CI/CD Pipeline
+name: Deploy to AWS Fargate
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to ECR
+      run: |
+        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/684273795037.dkr.ecr.af-south-1.amazonaws.com/sentence-builder-frontend:latest .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/684273795037.dkr.ecr.af-south-1.amazonaws.com/sentence-builder-frontend:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to AWS Fargate
+      run: |
+        aws ecs update-service --cluster Fargate --service SB-Fargate --force-new-deployment
