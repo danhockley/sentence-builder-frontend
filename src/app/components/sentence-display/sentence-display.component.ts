@@ -23,10 +23,16 @@ export class SentenceDisplayComponent implements OnInit {
     // Event handler for submitting a sentence
     submitSentence(): void {
         // Check if the constructed sentence is not empty
-        if (this.constructedSentence.trim() !== '') {
+        const trimmedSentence = this.constructedSentence.trim()
+        if (trimmedSentence !== '') {
+            // Capitalize the first letter of the sentence
+            const capitalizedSentence =
+                trimmedSentence.charAt(0).toUpperCase() +
+                trimmedSentence.slice(1)
+
             // Call the ApiService to submit the sentence
             this.apiService
-                .submitSentence(this.constructedSentence)
+                .submitSentence(capitalizedSentence)
                 .subscribe(() => {
                     // After submission, refresh the list of submitted sentences
                     this.apiService.getAllSentences().subscribe(sentences => {

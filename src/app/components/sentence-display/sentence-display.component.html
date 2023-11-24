@@ -4,7 +4,7 @@
     class="mat-body-1"
 >
     <h3>Your Sentence:</h3>
-    <p>{{ constructedSentence }}</p>
+    <p>{{ constructedSentence | capitalizeFirstLetter }}</p>
 
     <!-- Submit button -->
     <button type="button" class="submit-button" (click)="submitSentence()">
