@@ -3,18 +3,24 @@
     *ngIf="constructedSentence"
     class="mat-body-1"
 >
-    <h3>Your Sentence:</h3>
+    <!-- <h4>Your Sentence:</h4> -->
     <p>{{ constructedSentence | capitalizeFirstLetter }}</p>
 
-    <!-- Submit button -->
-    <button type="button" class="submit-button" (click)="submitSentence()">
-        Submit Sentence
-    </button>
+    <div class="button-container">
+        <button type="button" class="submit-button" (click)="submitSentence()">
+            Submit Sentence
+        </button>
+        <!-- <button
+            type="button"
+            class="discard-button"
+            (click)="discardSentence()"
+        >
+            <mat-icon color="warn">delete</mat-icon>
+        </button> -->
+    </div>
 </div>
 
-<!-- Display previously submitted sentences -->
 <div *ngIf="submittedSentences.length > 0" class="submitted-sentences">
-    <!-- <h3>Previously submitted sentences:</h3> -->
     <app-sentences-table
         [submittedSentences]="submittedSentences"
         (sentenceUpdated)="refreshSentences()"

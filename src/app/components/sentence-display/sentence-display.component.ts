@@ -52,4 +52,9 @@ export class SentenceDisplayComponent implements OnInit {
             this.submittedSentences = sentences
         })
     }
+
+    // Method to clear the constructed sentence
+    discardSentence(): void {
+        this.constructedSentence = ''
+    }
 }
