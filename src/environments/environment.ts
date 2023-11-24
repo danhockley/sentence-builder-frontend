@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
     api: {
-        serverUrl: 'http://localhost:6060',
+        serverUrl: 'https://tasty-gold-gecko.cyclic.app',
     },
 }

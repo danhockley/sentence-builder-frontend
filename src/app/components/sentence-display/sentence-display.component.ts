@@ -7,43 +7,54 @@ import { ApiService } from '../../services/api.service'
     styleUrls: ['./sentence-display.component.scss'],
 })
 export class SentenceDisplayComponent implements OnInit {
+    // Input property to receive the constructed sentence from the parent component
     @Input() constructedSentence: string = ''
+
+    // Array to store previously submitted sentences
     submittedSentences: any[] = []
 
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
+        // Refresh the list of submitted sentences on component initialization
         this.refreshSentences()
     }
 
+    // Event handler for submitting a sentence
     submitSentence(): void {
-        if (this.constructedSentence.trim() !== '') {
+        // Check if the constructed sentence is not empty
+        const trimmedSentence = this.constructedSentence.trim()
+        if (trimmedSentence !== '') {
+            // Capitalize the first letter of the sentence
+            const capitalizedSentence =
+                trimmedSentence.charAt(0).toUpperCase() +
+                trimmedSentence.slice(1)
+
+            // Call the ApiService to submit the sentence
             this.apiService
-                .submitSentence(this.constructedSentence)
+                .submitSentence(capitalizedSentence)
                 .subscribe(() => {
+                    // After submission, refresh the list of submitted sentences
                     this.apiService.getAllSentences().subscribe(sentences => {
                         this.submittedSentences = sentences
-                        this.constructedSentence = '' // Clear the constructed sentence
+                        // Clear the constructed sentence after submission
+                        this.constructedSentence = ''
                     })
                 })
         }
     }
 
-    refreshSentences() {
+    // Method to refresh the list of submitted sentences
+    refreshSentences(): void {
+        // Call the ApiService to get all submitted sentences
         this.apiService.getAllSentences().subscribe(sentences => {
+            // Update the array of submitted sentences
             this.submittedSentences = sentences
         })
     }
 
-    // Function to edit a sentence
-    editSentence(sentence: any): void {
-        // Implement your edit logic here
-        console.log('Editing sentence:', sentence)
-    }
-
-    // Function to delete a sentence
-    deleteSentence(sentence: any): void {
-        // Implement your delete logic here
-        console.log('Deleting sentence:', sentence)
+    // Method to clear the constructed sentence
+    discardSentence(): void {
+        this.constructedSentence = ''
     }
 }

@@ -10,6 +10,8 @@ import { SentenceDisplayComponent } from './components/sentence-display/sentence
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
 
+import { CapitalizeFirstLetterPipe } from './shared/pipes/capitalize-first-letter.pipe'
+
 import { MatTableModule } from '@angular/material/table'
 import { MatIconModule } from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -26,6 +28,7 @@ import { SentencesTableComponent } from './components/sentences-table/sentences-
         SentenceDisplayComponent,
         SentenceBuilderComponent,
         SentencesTableComponent,
+        CapitalizeFirstLetterPipe,
     ],
     imports: [
         BrowserModule,
