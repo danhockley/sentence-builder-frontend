@@ -40,7 +40,7 @@ jobs:
               with:
                   task-definition: sentence-builder-frontend-task-definition.json
                   container-name: sentence-builder-frontend
-                  image: ${{ steps.build-image.outputs.image }}
+                  image: ${{ steps.build.outputs.image }}
 
             - name: Deploy Amazon ECS task definition
               uses: aws-actions/amazon-ecs-deploy-task-definition@v1
