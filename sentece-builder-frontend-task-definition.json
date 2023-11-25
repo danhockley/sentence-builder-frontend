@@ -1,15 +1,15 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:763857617563:task-definition/nodejs-app-task-definition:3",
+    "taskDefinitionArn": "arn:aws:ecs:af-south-1:684273795037:task-definition/sentence-builder-frontend-task-definition:1",
     "containerDefinitions": [
         {
-            "name": "nodejs-app",
-            "image": "763857617563.dkr.ecr.eu-north-1.amazonaws.com/nodejs-app",
+            "name": "sentence-builder-frontend",
+            "image": "684273795037.dkr.ecr.af-south-1.amazonaws.com/sentence-builder-frontend",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "nodejs-app-5000-tcp",
-                    "containerPort": 5000,
-                    "hostPort": 5000,
+                    "name": "sentence-builder-frontend-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -24,19 +24,19 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/nodejs-app-task-definition",
-                    "awslogs-region": "eu-north-1",
+                    "awslogs-group": "/ecs/sentence-builder-frontend-task-definition",
+                    "awslogs-region": "af-south-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
             }
         }
     ],
-    "family": "nodejs-app-task-definition",
-    "taskRoleArn": "arn:aws:iam::763857617563:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::763857617563:role/ecsTaskExecutionRole",
+    "family": "sentence-builder-frontend-task-definition",
+    "taskRoleArn": "arn:aws:iam::684273795037:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::684273795037:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 3,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -71,13 +71,13 @@
     "placementConstraints": [],
     "compatibilities": ["EC2", "FARGATE"],
     "requiresCompatibilities": ["FARGATE"],
-    "cpu": "1024",
-    "memory": "3072",
+    "cpu": "256",
+    "memory": "512",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-09-25T19:33:06.607Z",
-    "registeredBy": "arn:aws:iam::763857617563:root",
+    "registeredAt": "2023-11-25T11:06:13.384Z",
+    "registeredBy": "arn:aws:iam::684273795037:root",
     "tags": []
 }
