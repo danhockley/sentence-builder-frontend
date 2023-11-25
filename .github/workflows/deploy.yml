@@ -47,6 +47,6 @@ jobs:
               uses: aws-actions/amazon-ecs-deploy-task-definition@v1
               with:
                   task-definition: ${{ steps.task-def.outputs.task-definition }}
-                  service: sentence-builder-service
+                  service: sentence-builder-frontend-service
                   cluster: SB-Frontend
                   wait-for-service-stability: true
