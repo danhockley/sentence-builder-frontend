@@ -1,5 +1,5 @@
 # Use the specified Node.js version
-FROM node:16.20 as angular
+FROM node:18 as angular
 
 WORKDIR /app
 
