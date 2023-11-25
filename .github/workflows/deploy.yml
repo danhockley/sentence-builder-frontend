@@ -2,8 +2,7 @@ name: Deploy to AWS Fargate
 
 on:
   push:
-    branches:
-      - deploy-to-ecs-fargate
+    branches: [ deploy-to-ecs-fargate ]
 
 jobs:
   build:
