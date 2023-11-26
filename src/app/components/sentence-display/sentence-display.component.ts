@@ -26,7 +26,7 @@ export class SentenceDisplayComponent implements OnInit {
         const trimmedSentence = this.constructedSentence.trim()
         if (trimmedSentence !== '') {
             // Capitalize the first letter of the sentence
-            const capitalizedSentence =
+            let capitalizedSentence =
                 trimmedSentence.charAt(0).toUpperCase() +
                 trimmedSentence.slice(1)
 
@@ -39,6 +39,7 @@ export class SentenceDisplayComponent implements OnInit {
                         this.submittedSentences = sentences
                         // Clear the constructed sentence after submission
                         this.constructedSentence = ''
+                        window.location.reload()
                     })
                 })
         }

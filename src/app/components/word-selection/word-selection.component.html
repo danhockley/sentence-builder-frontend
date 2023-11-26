@@ -8,6 +8,7 @@
             (change)="onWordTypeSelect(); onWordTypeChange()"
             required
         >
+            <option [value]="null"></option>
             <option *ngFor="let type of wordTypes" [value]="type">
                 {{ type }}
             </option>

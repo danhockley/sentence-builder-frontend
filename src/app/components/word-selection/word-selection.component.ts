@@ -58,7 +58,7 @@ export class WordSelectionComponent implements OnInit {
             // Emit the selected word to the parent component
             this.wordSelected.emit(`${this.selectedWord}`)
 
-            // Optionally, you can clear the selectedWordType and selectedWord for the next selection
+            // Clear the selectedWordType and selectedWord for the next selection
             this.selectedWordType = ''
             this.selectedWord = ''
         }
