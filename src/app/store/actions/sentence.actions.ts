@@ -7,8 +7,26 @@ export const setConstructedSentence = createAction(
 
 export const submitSentence = createAction('[Sentence] Submit Sentence')
 
+export const loadSentences = createAction('[Sentence] Load Sentences')
+
+export const loadSentencesSuccess = createAction(
+    '[Sentence] Load Sentences Success',
+    props<{ sentences: any[] }>(),
+)
+
+export const loadSentencesFailure = createAction(
+    '[Sentence] Load Sentences Failure',
+    props<{ error: any }>(),
+)
+
+export const deleteSentence = createAction(
+    '[Sentence] Delete Sentence',
+    props<{ id: string }>(),
+)
+
 export const successfulSubmission = createAction(
     '[Sentence] Successful Submission',
+    props<{ sentences: any[] }>(),
 )
 
 export const errorSubmission = createAction(

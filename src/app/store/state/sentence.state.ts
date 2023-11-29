@@ -6,4 +6,5 @@ export interface SentenceState {
     constructedSentence: string
     wordTypes: string[]
     wordList: string[]
+    submittedSentences: any[]
 }

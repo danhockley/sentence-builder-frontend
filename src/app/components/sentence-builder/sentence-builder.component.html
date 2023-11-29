@@ -16,16 +16,20 @@
             [constructedSentence]="
                 sentenceForm.get('constructedSentence')?.value
             "
-            (submitSentenceClicked)="handleSentenceSubmit()"
+            (submitSentenceClicked)="onSentenceSubmit()"
         ></app-sentence-display>
     </form>
 
-    <!-- Move the sentences-table component here -->
-    <div *ngIf="submittedSentences.length > 0" class="submitted-sentences">
+    <div
+        *ngIf="submittedSentences$ | async as sentences; else loading"
+        class="submitted-sentences"
+    >
+        <!-- Your table rendering code here using the 'sentences' array -->
         <app-sentences-table
-            [submittedSentences]="submittedSentences"
+            [submittedSentences]="sentences"
             (sentenceUpdated)="refreshSentences()"
             (sentenceDeleted)="refreshSentences()"
         ></app-sentences-table>
     </div>
+    <ng-template #loading>Loading...</ng-template>
 </div>

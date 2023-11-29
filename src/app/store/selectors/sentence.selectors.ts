@@ -22,6 +22,12 @@ export const getWordList = createSelector(
     (state: SentenceState) => state.wordList,
 )
 
+// Add a selector to get all sentences
+export const getAllSentences = createSelector(
+    selectSentenceState,
+    (state: SentenceState) => state.submittedSentences,
+)
+
 // Export the entire state for type safety
 export interface State {
     sentence: SentenceState

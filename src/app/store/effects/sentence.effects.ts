@@ -23,11 +23,47 @@ export class SentenceEffects {
                 this.store.select(SentenceSelectors.getConstructedSentence),
             ),
             switchMap(([_, constructedSentence]) =>
-                // Dispatching a success action after submitting the sentence
                 this.apiService.submitSentence(constructedSentence).pipe(
-                    map(() => SentenceActions.successfulSubmission()),
+                    switchMap(() =>
+                        this.apiService.getAllSentences().pipe(
+                            map(sentences =>
+                                SentenceActions.successfulSubmission({
+                                    sentences,
+                                }),
+                            ),
+                            catchError(error =>
+                                of(SentenceActions.errorSubmission({ error })),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    )
+    submitSentenceSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SentenceActions.successfulSubmission),
+            map(() => SentenceActions.loadSentences()),
+        ),
+    )
+
+    loadSentencesAfterSubmission$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SentenceActions.successfulSubmission),
+            map(() => SentenceActions.loadSentences()),
+        ),
+    )
+
+    loadSentences$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SentenceActions.loadSentences),
+            switchMap(() =>
+                this.apiService.getAllSentences().pipe(
+                    map(sentences =>
+                        SentenceActions.loadSentencesSuccess({ sentences }),
+                    ),
                     catchError(error =>
-                        of(SentenceActions.errorSubmission({ error })),
+                        of(SentenceActions.loadSentencesFailure({ error })),
                     ),
                 ),
             ),
@@ -65,6 +101,32 @@ export class SentenceEffects {
                     ),
                     catchError(error =>
                         of(SentenceActions.fetchWordListFailure({ error })),
+                    ),
+                ),
+            ),
+        ),
+    )
+
+    deleteSentence$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SentenceActions.deleteSentence),
+            switchMap(action =>
+                this.apiService.deleteSentence(action.id).pipe(
+                    switchMap(() =>
+                        this.apiService.getAllSentences().pipe(
+                            map(sentences =>
+                                SentenceActions.loadSentencesSuccess({
+                                    sentences,
+                                }),
+                            ),
+                            catchError(error =>
+                                of(
+                                    SentenceActions.loadSentencesFailure({
+                                        error,
+                                    }),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
             ),

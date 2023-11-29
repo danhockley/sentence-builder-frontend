@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Store } from '@ngrx/store'
+import { Store, select } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { catchError, delay, switchMap, tap } from 'rxjs/operators'
 import * as SentenceSelectors from '../../store/selectors/sentence.selectors'
 import { AppState } from '../../store/state/sentence.state'
 import * as SentenceActions from '../../store/actions/sentence.actions'
-import { ApiService } from '../../services/api.service'
 
 @Component({
     selector: 'app-sentence-builder',
@@ -18,21 +16,20 @@ export class SentenceBuilderComponent implements OnInit {
     sentenceForm!: FormGroup
     loading = false
     constructedSentence$: Observable<string>
-    submittedSentences: any[] = []
+    submittedSentences$: Observable<any[]>
 
-    constructor(
-        private apiService: ApiService,
-        private fb: FormBuilder,
-        private store: Store<AppState>,
-    ) {
-        this.constructedSentence$ = this.store.select(
-            SentenceSelectors.getConstructedSentence,
+    constructor(private fb: FormBuilder, private store: Store<AppState>) {
+        this.constructedSentence$ = this.store.pipe(
+            select(SentenceSelectors.getConstructedSentence),
+        )
+        this.submittedSentences$ = this.store.pipe(
+            select(SentenceSelectors.getAllSentences),
         )
     }
 
     ngOnInit(): void {
         this.initForm()
-        this.refreshSentences()
+        this.store.dispatch(SentenceActions.loadSentences())
     }
 
     private initForm(): void {
@@ -65,19 +62,8 @@ export class SentenceBuilderComponent implements OnInit {
 
             this.loading = true
 
-            // Move API call to Ngrx effect
+            // Move API call to NgRx effect
             this.store.dispatch(SentenceActions.submitSentence())
         }
-    }
-
-    // Handle the event emitted by SentenceDisplayComponent
-    handleSentenceSubmit(): void {
-        this.onSentenceSubmit()
-    }
-
-    refreshSentences(): void {
-        this.apiService.getAllSentences().subscribe(sentences => {
-            this.submittedSentences = sentences
-        })
     }
 }
