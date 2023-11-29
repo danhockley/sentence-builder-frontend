@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms'
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
+import { AppStoreModule } from './store/app-store.module'
 import { AppRoutingModule } from './app-routing.module'
+
 import { AppComponent } from './app.component'
 import { WordSelectionComponent } from './components/word-selection/word-selection.component'
 import { SentenceDisplayComponent } from './components/sentence-display/sentence-display.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SentenceBuilderComponent } from './components/sentence-builder/sentence-builder.component'
+import { SentencesTableComponent } from './components/sentences-table/sentences-table.component'
 
 import { CapitalizeFirstLetterPipe } from './shared/pipes/capitalize-first-letter.pipe'
 
@@ -19,7 +23,6 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
-import { SentencesTableComponent } from './components/sentences-table/sentences-table.component'
 
 @NgModule({
     declarations: [
@@ -36,6 +39,8 @@ import { SentencesTableComponent } from './components/sentences-table/sentences-
         BrowserAnimationsModule,
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
+        AppStoreModule,
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
@@ -43,6 +48,8 @@ import { SentencesTableComponent } from './components/sentences-table/sentences-
         MatCardModule,
         MatTableModule,
         MatIconModule,
+        StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
     ],
     providers: [],
     bootstrap: [AppComponent],

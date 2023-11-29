@@ -9,16 +9,16 @@
             required
         >
             <option [value]="null"></option>
-            <option *ngFor="let type of wordTypes" [value]="type">
+            <option *ngFor="let type of wordTypes$ | async" [value]="type">
                 {{ type }}
             </option>
         </select>
     </div>
-    <div *ngIf="wordList.length > 0 && selectedWordType">
+    <div *ngIf="(wordList$ | async)?.length > 0 && selectedWordType">
         <label for="wordList">Select a Word:</label>
         <select id="wordList" name="wordList" [(ngModel)]="selectedWord">
             <option [value]="null"></option>
-            <option *ngFor="let word of wordList" [value]="word">
+            <option *ngFor="let word of wordList$ | async" [value]="word">
                 {{ word }}
             </option>
         </select>
@@ -26,7 +26,7 @@
         <button
             type="button"
             (click)="addToSentence()"
-            *ngIf="wordList.length > 0 && selectedWord"
+            *ngIf="(wordList$ | async)?.length > 0 && selectedWord"
         >
             Add to Sentence
         </button>

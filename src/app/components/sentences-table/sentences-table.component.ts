@@ -1,30 +1,29 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
-import { ApiService } from '../../services/api.service'
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
+import * as SentenceActions from '../../store/actions/sentence.actions'
 
 @Component({
     selector: 'app-sentences-table',
     templateUrl: './sentences-table.component.html',
     styleUrls: ['./sentences-table.component.scss'],
 })
-export class SentencesTableComponent {
-    // Input property to receive the array of submitted sentences from the parent component
+export class SentencesTableComponent implements OnInit {
     @Input() submittedSentences: any[] = []
-
-    // Output events to notify the parent component about sentence deletions
     @Output() sentenceDeleted = new EventEmitter()
 
-    // Constructor to inject the ApiService
-    constructor(private apiService: ApiService) {}
+    constructor(private store: Store) {}
 
-    // Method to delete a sentence
+    ngOnInit(): void {
+        // Load sentences when the component initializes
+        this.store.dispatch(SentenceActions.loadSentences())
+    }
+
     deleteSentence(sentence: any): void {
-        // Ask for confirmation before deleting the sentence
+        // Prompt user for confirmation and dispatch delete action
         if (confirm('Are you sure you want to delete this sentence?')) {
-            // Call the ApiService to delete the sentence
-            this.apiService.deleteSentence(sentence._id).subscribe(() => {
-                // Trigger a refresh in the parent component after deletion
-                this.sentenceDeleted.emit()
-            })
+            this.store.dispatch(
+                SentenceActions.deleteSentence({ id: sentence._id }),
+            )
         }
     }
 }

@@ -1,10 +1,33 @@
 <div>
-    <h2>Dan's Simple Sentence Builder</h2>
-    <app-word-selection
-        (wordSelected)="onWordSelected($event)"
-    ></app-word-selection>
-    <app-sentence-display
-        [constructedSentence]="constructedSentence"
-        (onSentenceSubmit)="onSentenceSubmit()"
-    ></app-sentence-display>
+    <h2>WordJam Express</h2>
+
+    <form [formGroup]="sentenceForm">
+        <app-word-selection
+            (wordSelected)="onWordSelected($event)"
+        ></app-word-selection>
+        <div
+            *ngIf="
+                sentenceForm.get('constructedSentence')?.hasError('required')
+            "
+        >
+            Let's build a WordJam!
+        </div>
+        <app-sentence-display
+            [constructedSentence]="
+                sentenceForm.get('constructedSentence')?.value
+            "
+            (submitSentenceClicked)="onSentenceSubmit()"
+        ></app-sentence-display>
+    </form>
+
+    <div
+        *ngIf="submittedSentences$ | async as sentences"
+        class="submitted-sentences"
+    >
+        <app-sentences-table
+            [submittedSentences]="sentences"
+            (sentenceUpdated)="refreshSentences()"
+            (sentenceDeleted)="refreshSentences()"
+        ></app-sentences-table>
+    </div>
 </div>
