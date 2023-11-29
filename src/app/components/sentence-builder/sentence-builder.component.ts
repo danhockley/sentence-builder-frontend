@@ -14,7 +14,6 @@ import * as SentenceActions from '../../store/actions/sentence.actions'
 })
 export class SentenceBuilderComponent implements OnInit {
     sentenceForm!: FormGroup
-    loading = false
     constructedSentence$: Observable<string>
     submittedSentences$: Observable<any[]>
 
@@ -28,17 +27,20 @@ export class SentenceBuilderComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        // Initialize the form and load sentences on component initialization
         this.initForm()
         this.store.dispatch(SentenceActions.loadSentences())
     }
 
     private initForm(): void {
+        // Initialize the sentence form with required validator
         this.sentenceForm = this.fb.group({
             constructedSentence: ['', Validators.required],
         })
     }
 
     onWordSelected(selectedWord: string): void {
+        // Add selected word to the current sentence in the form
         const currentSentence = this.sentenceForm.get(
             'constructedSentence',
         )!.value
@@ -49,6 +51,7 @@ export class SentenceBuilderComponent implements OnInit {
 
     onSentenceSubmit(): void {
         if (this.sentenceForm.valid) {
+            // Trim and dispatch the constructed sentence for submission
             let constructedSentence = this.sentenceForm
                 .get('constructedSentence')!
                 .value.trim()
@@ -59,9 +62,16 @@ export class SentenceBuilderComponent implements OnInit {
                 }),
             )
 
-            this.loading = true
-
+            // Dispatch the sentence submission action
             this.store.dispatch(SentenceActions.submitSentence())
+
+            // Dispatch the action to clear the constructed sentence
+            this.store.dispatch(SentenceActions.clearConstructedSentence())
+
+            // Reset the sentenceForm value
+            this.sentenceForm.setValue({
+                constructedSentence: '',
+            })
         }
     }
 }

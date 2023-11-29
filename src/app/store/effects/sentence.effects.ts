@@ -16,6 +16,7 @@ export class SentenceEffects {
         private store: Store<AppState>,
     ) {}
 
+    // Submit a sentence to the backend, then load all sentences upon success
     submitSentence$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.submitSentence),
@@ -46,6 +47,7 @@ export class SentenceEffects {
         ),
     )
 
+    // Load sentences after a successful sentence submission
     submitSentenceSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.successfulSubmission),
@@ -53,6 +55,7 @@ export class SentenceEffects {
         ),
     )
 
+    // Load sentences after a successful sentence submission
     loadSentencesAfterSubmission$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.successfulSubmission),
@@ -60,6 +63,7 @@ export class SentenceEffects {
         ),
     )
 
+    // Load sentences from the backend
     loadSentences$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.loadSentences),
@@ -76,11 +80,11 @@ export class SentenceEffects {
         ),
     )
 
+    // Fetch word types and dispatch appropriate actions
     fetchWordTypes$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.fetchWordTypes),
             switchMap(() =>
-                // Fetching word types and dispatching appropriate actions
                 this.apiService.getWordTypes().pipe(
                     map(types =>
                         SentenceActions.fetchWordTypesSuccess({ types }),
@@ -93,6 +97,7 @@ export class SentenceEffects {
         ),
     )
 
+    // Fetch word list based on the selected word type and dispatch actions
     fetchWordList$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.fetchWordList),
@@ -100,7 +105,6 @@ export class SentenceEffects {
                 this.store.select(SentenceSelectors.getConstructedSentence),
             ),
             switchMap(([action, constructedSentence]) =>
-                // Fetching word list based on the selected word type and dispatching actions
                 this.apiService.getWordsByType(action.category).pipe(
                     map(words =>
                         SentenceActions.fetchWordListSuccess({ words }),
@@ -113,6 +117,7 @@ export class SentenceEffects {
         ),
     )
 
+    // Delete a sentence, then load all sentences upon success
     deleteSentence$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.deleteSentence),

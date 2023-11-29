@@ -1,28 +1,29 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 import { SentenceState } from '../state/sentence.state'
 
-// Create a feature selector for the sentence state
+// Feature selector for the sentence state
 export const selectSentenceState =
     createFeatureSelector<SentenceState>('sentence')
 
-// Create selectors to get specific pieces of state
+// Selector for the constructed sentence
 export const getConstructedSentence = createSelector(
     selectSentenceState,
     (state: SentenceState) => state.constructedSentence,
 )
 
-// Add selectors for word types and word list
+// Selector for word types
 export const getWordTypes = createSelector(
     selectSentenceState,
     (state: SentenceState) => state.wordTypes,
 )
 
+// Selector for word list
 export const getWordList = createSelector(
     selectSentenceState,
     (state: SentenceState) => state.wordList,
 )
 
-// Add a selector to get all sentences
+// Selector for all submitted sentences
 export const getAllSentences = createSelector(
     selectSentenceState,
     (state: SentenceState) => state.submittedSentences,

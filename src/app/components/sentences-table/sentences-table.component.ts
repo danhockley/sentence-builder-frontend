@@ -14,10 +14,12 @@ export class SentencesTableComponent implements OnInit {
     constructor(private store: Store) {}
 
     ngOnInit(): void {
+        // Load sentences when the component initializes
         this.store.dispatch(SentenceActions.loadSentences())
     }
 
     deleteSentence(sentence: any): void {
+        // Prompt user for confirmation and dispatch delete action
         if (confirm('Are you sure you want to delete this sentence?')) {
             this.store.dispatch(
                 SentenceActions.deleteSentence({ id: sentence._id }),

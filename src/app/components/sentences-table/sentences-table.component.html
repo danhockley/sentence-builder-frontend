@@ -1,13 +1,11 @@
 <table mat-table [dataSource]="submittedSentences" class="mat-elevation-z8">
-    <!-- Word Column -->
     <ng-container matColumnDef="words">
-        <th mat-header-cell *matHeaderCellDef>Sentences</th>
+        <th mat-header-cell *matHeaderCellDef>WordJams</th>
         <td mat-cell *matCellDef="let sentence">
             {{ sentence.words }}
         </td>
     </ng-container>
 
-    <!-- Edit/Delete Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let sentence">

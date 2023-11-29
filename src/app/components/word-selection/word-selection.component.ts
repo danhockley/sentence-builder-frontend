@@ -19,22 +19,24 @@ export class WordSelectionComponent implements OnInit {
     constructor(private store: Store<AppState>) {}
 
     ngOnInit(): void {
-        // Dispatching actions to fetch word types and word list
+        // Fetch initial word types and word list
         this.store.dispatch(SentenceActions.fetchWordTypes())
     }
 
     onWordTypeSelect(): void {
-        // Dispatching action to fetch word list based on the selected category
+        // Fetch word list based on the selected category
         this.store.dispatch(
             SentenceActions.fetchWordList({ category: this.selectedWordType }),
         )
     }
 
     onWordTypeChange(): void {
+        // Reset selected word on word type change
         this.selectedWord = ''
     }
 
     addToSentence(): void {
+        // Emit selected word to the parent component
         if (this.selectedWordType && this.selectedWord) {
             this.wordSelected.emit(`${this.selectedWord}`)
             this.selectedWordType = ''

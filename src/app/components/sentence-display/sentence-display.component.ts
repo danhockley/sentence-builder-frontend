@@ -10,6 +10,7 @@ export class SentenceDisplayComponent {
     @Output() submitSentenceClicked = new EventEmitter<void>()
     submittedSentences: any[] = []
 
+    // Emits event to parent (sentence builder) when the "Submit Sentence" button is clicked.
     submitSentence(): void {
         this.submitSentenceClicked.emit()
     }

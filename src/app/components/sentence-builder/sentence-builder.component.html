@@ -10,7 +10,7 @@
                 sentenceForm.get('constructedSentence')?.hasError('required')
             "
         >
-            Let's build a sentence!
+            Let's build a WordJam!
         </div>
         <app-sentence-display
             [constructedSentence]="
@@ -21,15 +21,13 @@
     </form>
 
     <div
-        *ngIf="submittedSentences$ | async as sentences; else loading"
+        *ngIf="submittedSentences$ | async as sentences"
         class="submitted-sentences"
     >
-        <!-- Your table rendering code here using the 'sentences' array -->
         <app-sentences-table
             [submittedSentences]="sentences"
             (sentenceUpdated)="refreshSentences()"
             (sentenceDeleted)="refreshSentences()"
         ></app-sentences-table>
     </div>
-    <ng-template #loading>Loading...</ng-template>
 </div>
