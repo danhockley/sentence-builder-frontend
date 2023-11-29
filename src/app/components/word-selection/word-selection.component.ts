@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { ApiService } from '../../services/api.service'
+import { Store } from '@ngrx/store'
+import { AppState } from '../../store/state/sentence.state'
+import * as SentenceActions from '../../store/actions/sentence.actions'
+import * as SentenceSelectors from '../../store/selectors/sentence.selectors'
 
 @Component({
     selector: 'app-word-selection',
@@ -7,58 +10,33 @@ import { ApiService } from '../../services/api.service'
     styleUrls: ['./word-selection.component.scss'],
 })
 export class WordSelectionComponent implements OnInit {
-    // Output event to notify the parent component about the selected word
     @Output() wordSelected = new EventEmitter<string>()
-
-    // Arrays to store word types and the list of words based on the selected type
-    wordTypes: string[] = []
+    wordTypes$ = this.store.select(SentenceSelectors.getWordTypes)
     selectedWordType: string = ''
-    wordList: string[] = []
+    wordList$ = this.store.select(SentenceSelectors.getWordList)
     selectedWord: string = ''
 
-    // Constructor to inject the ApiService
-    constructor(private apiService: ApiService) {}
+    constructor(private store: Store<AppState>) {}
 
-    // Lifecycle hook called after the component is initialized
     ngOnInit(): void {
-        // Fetch and populate the array of word types from the API
-        this.apiService.getWordTypes().subscribe(
-            types => {
-                this.wordTypes = types
-            },
-            error => {
-                console.error('Error fetching word types:', error)
-            },
-        )
+        // Dispatching actions to fetch word types and word list
+        this.store.dispatch(SentenceActions.fetchWordTypes())
     }
 
-    // Event handler for word type selection
     onWordTypeSelect(): void {
-        // Fetch and populate the list of words based on the selected word type from the API
-        this.apiService.getWordsByType(this.selectedWordType).subscribe(
-            words => {
-                this.wordList = words
-            },
-            error => {
-                console.error('Error fetching words:', error)
-            },
+        // Dispatching action to fetch word list based on the selected category
+        this.store.dispatch(
+            SentenceActions.fetchWordList({ category: this.selectedWordType }),
         )
     }
 
-    // Event handler for word type change
     onWordTypeChange(): void {
-        // Reset selectedWord when the word type changes
         this.selectedWord = ''
     }
 
-    // Event handler for adding the selected word to the sentence
     addToSentence(): void {
-        // Check if the selected word and type are not empty
         if (this.selectedWordType && this.selectedWord) {
-            // Emit the selected word to the parent component
             this.wordSelected.emit(`${this.selectedWord}`)
-
-            // Clear the selectedWordType and selectedWord for the next selection
             this.selectedWordType = ''
             this.selectedWord = ''
         }

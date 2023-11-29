@@ -3,20 +3,10 @@
     *ngIf="constructedSentence"
     class="mat-body-1"
 >
-    <!-- <h4>Your Sentence:</h4> -->
     <p>{{ constructedSentence | capitalizeFirstLetter }}</p>
-
     <div class="button-container">
         <button type="button" class="submit-button" (click)="submitSentence()">
             Submit Sentence
         </button>
     </div>
-</div>
-
-<div *ngIf="submittedSentences.length > 0" class="submitted-sentences">
-    <app-sentences-table
-        [submittedSentences]="submittedSentences"
-        (sentenceUpdated)="refreshSentences()"
-        (sentenceDeleted)="refreshSentences()"
-    ></app-sentences-table>
 </div>

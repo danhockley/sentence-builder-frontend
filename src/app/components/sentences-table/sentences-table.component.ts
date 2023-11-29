@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
 import { ApiService } from '../../services/api.service'
 
 @Component({
@@ -6,7 +6,7 @@ import { ApiService } from '../../services/api.service'
     templateUrl: './sentences-table.component.html',
     styleUrls: ['./sentences-table.component.scss'],
 })
-export class SentencesTableComponent {
+export class SentencesTableComponent implements OnInit {
     // Input property to receive the array of submitted sentences from the parent component
     @Input() submittedSentences: any[] = []
 
@@ -15,6 +15,15 @@ export class SentencesTableComponent {
 
     // Constructor to inject the ApiService
     constructor(private apiService: ApiService) {}
+
+    // Lifecycle hook to initialize the component
+    ngOnInit(): void {
+        // Call the ApiService to get all submitted sentences
+        this.apiService.getAllSentences().subscribe(sentences => {
+            // Update the array of submitted sentences
+            this.submittedSentences = sentences
+        })
+    }
 
     // Method to delete a sentence
     deleteSentence(sentence: any): void {

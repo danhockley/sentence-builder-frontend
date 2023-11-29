@@ -1,0 +1,27 @@
+/* Add some custom styling for the table */
+.mat-table {
+    width: 100%;
+    margin-top: 20px; /* Add some spacing */
+
+    &.mat-elevation-z8 {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Customize the elevation shadow */
+    }
+
+    /* Style the header row */
+    .mat-header-row {
+        background-color: #3498db; /* Set a background color for header row */
+        color: white; /* Set text color for header row */
+    }
+
+    /* Style the data rows */
+    .mat-row {
+        &:hover {
+            background-color: #ecf0f1; /* Set background color on hover */
+        }
+    }
+}
+
+/* Style the delete button */
+button.mat-icon-button {
+    color: #e74c3c; /* Set the button color */
+}

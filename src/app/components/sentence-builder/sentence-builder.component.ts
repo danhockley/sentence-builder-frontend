@@ -1,34 +1,83 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
+import { catchError, delay, switchMap, tap } from 'rxjs/operators'
+import * as SentenceSelectors from '../../store/selectors/sentence.selectors'
+import { AppState } from '../../store/state/sentence.state'
+import * as SentenceActions from '../../store/actions/sentence.actions'
 import { ApiService } from '../../services/api.service'
 
 @Component({
     selector: 'app-sentence-builder',
     templateUrl: './sentence-builder.component.html',
     styleUrls: ['./sentence-builder.component.scss'],
+    animations: [],
 })
-export class SentenceBuilderComponent {
-    constructedSentence: string = ''
+export class SentenceBuilderComponent implements OnInit {
+    sentenceForm!: FormGroup
+    loading = false
+    constructedSentence$: Observable<string>
+    submittedSentences: any[] = []
 
-    // Constructor to inject the ApiService
-    constructor(private apiService: ApiService) {}
-
-    // Event handler for word selection
-    onWordSelected(selectedWord: string): void {
-        // Add the selected word to the constructed sentence
-        this.constructedSentence += selectedWord + ' '
+    constructor(
+        private apiService: ApiService,
+        private fb: FormBuilder,
+        private store: Store<AppState>,
+    ) {
+        this.constructedSentence$ = this.store.select(
+            SentenceSelectors.getConstructedSentence,
+        )
     }
 
-    // Event handler for sentence submission
+    ngOnInit(): void {
+        this.initForm()
+        this.refreshSentences()
+    }
+
+    private initForm(): void {
+        this.sentenceForm = this.fb.group({
+            constructedSentence: ['', Validators.required],
+        })
+    }
+
+    onWordSelected(selectedWord: string): void {
+        const currentSentence = this.sentenceForm.get(
+            'constructedSentence',
+        )!.value
+        this.sentenceForm.patchValue({
+            constructedSentence: currentSentence + ' ' + selectedWord,
+        })
+    }
+
     onSentenceSubmit(): void {
-        // Check if the constructed sentence is not empty
-        if (this.constructedSentence.trim() !== '') {
-            // Call the ApiService to submit the sentence
-            this.apiService
-                .submitSentence(this.constructedSentence.trim())
-                .subscribe(() => {
-                    // Clear the constructed sentence after submission
-                    this.constructedSentence = ''
-                })
+        if (this.sentenceForm.valid) {
+            const constructedSentence = this.sentenceForm
+                .get('constructedSentence')!
+                .value.trim()
+
+            // Dispatch the action with the sentence as payload
+            this.store.dispatch(
+                SentenceActions.setConstructedSentence({
+                    sentence: constructedSentence,
+                }),
+            )
+
+            this.loading = true
+
+            // Move API call to Ngrx effect
+            this.store.dispatch(SentenceActions.submitSentence())
         }
+    }
+
+    // Handle the event emitted by SentenceDisplayComponent
+    handleSentenceSubmit(): void {
+        this.onSentenceSubmit()
+    }
+
+    refreshSentences(): void {
+        this.apiService.getAllSentences().subscribe(sentences => {
+            this.submittedSentences = sentences
+        })
     }
 }
