@@ -1,5 +1,5 @@
 <div>
-    <h2>Dan's Sentence Builder</h2>
+    <h2>WordJam Express</h2>
 
     <form [formGroup]="sentenceForm">
         <app-word-selection
@@ -10,7 +10,7 @@
                 sentenceForm.get('constructedSentence')?.hasError('required')
             "
         >
-            Sentence cannot be empty.
+            Let's build a sentence!
         </div>
         <app-sentence-display
             [constructedSentence]="

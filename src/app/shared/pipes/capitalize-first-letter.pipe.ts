@@ -8,6 +8,11 @@ export class CapitalizeFirstLetterPipe implements PipeTransform {
         if (!value) {
             return ''
         }
-        return value.charAt(0).toUpperCase() + value.slice(1)
+
+        const trimmedValue = value.trim() // Trim whitespace
+        const result =
+            trimmedValue.charAt(0).toUpperCase() + trimmedValue.slice(1)
+
+        return result
     }
 }

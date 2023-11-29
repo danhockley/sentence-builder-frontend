@@ -5,8 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 import { AppStoreModule } from './store/app-store.module'
-
 import { AppRoutingModule } from './app-routing.module'
+
 import { AppComponent } from './app.component'
 import { WordSelectionComponent } from './components/word-selection/word-selection.component'
 import { SentenceDisplayComponent } from './components/sentence-display/sentence-display.component'
@@ -40,6 +40,7 @@ import { MatCardModule } from '@angular/material/card'
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
+        AppStoreModule,
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
@@ -47,7 +48,6 @@ import { MatCardModule } from '@angular/material/card'
         MatCardModule,
         MatTableModule,
         MatIconModule,
-        AppStoreModule,
         StoreModule.forRoot({}, {}),
         EffectsModule.forRoot([]),
     ],

@@ -49,11 +49,10 @@ export class SentenceBuilderComponent implements OnInit {
 
     onSentenceSubmit(): void {
         if (this.sentenceForm.valid) {
-            const constructedSentence = this.sentenceForm
+            let constructedSentence = this.sentenceForm
                 .get('constructedSentence')!
                 .value.trim()
 
-            // Dispatch the action with the sentence as payload
             this.store.dispatch(
                 SentenceActions.setConstructedSentence({
                     sentence: constructedSentence,
@@ -62,7 +61,6 @@ export class SentenceBuilderComponent implements OnInit {
 
             this.loading = true
 
-            // Move API call to NgRx effect
             this.store.dispatch(SentenceActions.submitSentence())
         }
     }

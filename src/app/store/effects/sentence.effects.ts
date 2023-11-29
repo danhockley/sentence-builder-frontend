@@ -22,8 +22,13 @@ export class SentenceEffects {
             withLatestFrom(
                 this.store.select(SentenceSelectors.getConstructedSentence),
             ),
-            switchMap(([_, constructedSentence]) =>
-                this.apiService.submitSentence(constructedSentence).pipe(
+            switchMap(([_, constructedSentence]) => {
+                // Capitalize the first letter
+                constructedSentence =
+                    constructedSentence.charAt(0).toUpperCase() +
+                    constructedSentence.slice(1)
+
+                return this.apiService.submitSentence(constructedSentence).pipe(
                     switchMap(() =>
                         this.apiService.getAllSentences().pipe(
                             map(sentences =>
@@ -36,10 +41,11 @@ export class SentenceEffects {
                             ),
                         ),
                     ),
-                ),
-            ),
+                )
+            }),
         ),
     )
+
     submitSentenceSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SentenceActions.successfulSubmission),
