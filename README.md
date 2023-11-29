@@ -1,30 +1,28 @@
-# sentence-builder-frontend
-Welcome to the sentence-builder-frontend repository! This repository houses the Angular 16 implementation for a dynamic sentence-building web application. Users can interactively construct sentences by selecting words based on various word types such as Noun, Verb, Adjective, Adverb, Pronoun, Preposition, Conjunction, Determine, and Exclamation.
+# WordJam Express
+Welcome to the WordJam Express repository! This Angular 16 implementation is a dynamic sentence-building web application, enabling users to construct sentences interactively by selecting words based on various word types such as Noun, Verb, Adjective, Adverb, Pronoun, Preposition, Conjunction, Determine, and Exclamation.
 
 **Key Features:**
-- Dynamic selection of words based on word types.
-- User-friendly interface for building sentences.
-- Seamless integration with the backend for word retrieval and sentence submission.
-- Mobile-responsive design for optimal performance on various devices.
+- **Dynamic Word Selection:** Users can dynamically choose words based on their types to build engaging sentences.
+- **User-friendly Interface:** The application provides an intuitive interface for constructing sentences.
+- **Backend Integration:** Seamlessly integrates with the backend for word retrieval and sentence submission.
+- **Mobile-Responsive Design:** Ensures optimal performance across various devices.
 
 **Technologies:**
-- Angular 16
-- RESTful HTTP services for communication with the backend.
-- External configuration management for a scalable and maintainable codebase.
+- **Angular 16**
+- **RESTful HTTP Services:** Facilitates communication with the backend.
+- **External Configuration Management:** Maintains scalability and codebase manageability.
 
 **Repository Structure:**
-- src/: Contains the source code for the Angular application.
-- config/: External configuration files to manage hardcoded values.
-- docs/: Documentation and guides for developers and contributors.
-- tests/: Unit tests for ensuring code quality and reliability.
+- **src/:** Contains the source code for the Angular application.
+- **config/:** External configuration files to manage hardcoded values.
+- **docs/:** Documentation and guides for developers and contributors.
 
 **Development and Deployment:**
-- Utilizes containerization for consistent development and deployment environments.
-- Hosted on a cloud platform for accessibility and scalability.
+- **Containerization:** Utilizes Docker for consistent development and deployment environments.
+- **Cloud Hosting:** Hosted on AWS Fargate for accessibility and scalability.
   
 **Continuous Integration/Continuous Deployment (CI/CD):**
-- Implements a robust DevOps pipeline for seamless CI/CD flows.
-- External logging and monitoring for improved visibility into application behavior.
+- **DevOps Pipeline:** Implements a robust CI/CD pipeline for seamless flows.
   
 **Additional Considerations:**
 - Follows REST best practices for backend communication.
